@@ -1,0 +1,3 @@
+<template>
+    coach registration
+</template>
