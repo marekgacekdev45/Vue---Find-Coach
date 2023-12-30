@@ -1,5 +1,5 @@
 <template>
   details for coach
   <router-view></router-view>
-  <router-link to="/coaches/c1/contact">Contact</router-link>
+  <base-card  to="/coaches/c1/contact">Contact</base-card>
 </template>
