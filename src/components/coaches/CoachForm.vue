@@ -1,26 +1,26 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{ invalid: !firstName.isValid }">
-      <label for="firstname">First Name</label>
+    <div class="form-control" :class="{invalid: !firstName.isValid}">
+      <label for="firstname">Firstname</label>
       <input
         type="text"
         id="firstname"
         v-model.trim="firstName.val"
         @blur="clearValidity('firstName')"
       />
-      <p v-if="!firstName.isValid">First name must not be empty</p>
+      <p v-if="!firstName.isValid">Firstname must not be empty.</p>
     </div>
-    <div class="form-control" :class="{ invalid: !lastName.isValid }">
-      <label for="lastname">Last Name</label>
+    <div class="form-control" :class="{invalid: !lastName.isValid}">
+      <label for="lastname">Lastname</label>
       <input
         type="text"
         id="lastname"
         v-model.trim="lastName.val"
         @blur="clearValidity('lastName')"
       />
-      <p v-if="!lastName.isValid">First name must not be empty</p>
+      <p v-if="!lastName.isValid">Lastname must not be empty.</p>
     </div>
-    <div class="form-control" :class="{ invalid: !description.isValid }">
+    <div class="form-control" :class="{invalid: !description.isValid}">
       <label for="description">Description</label>
       <textarea
         id="description"
@@ -28,19 +28,14 @@
         v-model.trim="description.val"
         @blur="clearValidity('description')"
       ></textarea>
-      <p v-if="!description.isValid">Description must not be empty</p>
+      <p v-if="!description.isValid">Description must not be empty.</p>
     </div>
-    <div class="form-control" :class="{ invalid: !rate.isValid }">
+    <div class="form-control" :class="{invalid: !rate.isValid}">
       <label for="rate">Hourly Rate</label>
-      <input
-        type="number"
-        id="rate"
-        v-model.number="rate.val"
-        @blur="clearValidity('rate')"
-      />
-      <p v-if="!firstName.isValid">Rate must not be empty</p>
+      <input type="number" id="rate" v-model.number="rate.val" @blur="clearValidity('rate')" />
+      <p v-if="!rate.isValid">Rate must be greater than 0.</p>
     </div>
-    <div class="form-control" :class="{ invalid: !areas.isValid }">
+    <div class="form-control" :class="{invalid: !areas.isValid}">
       <h3>Areas of Expertise</h3>
       <div>
         <input
@@ -63,12 +58,18 @@
         <label for="backend">Backend Development</label>
       </div>
       <div>
-        <input type="checkbox" id="career" value="carrer" v-model="areas.val" @blur="clearValidity('areas')" />
-        <label for="carrer">Career</label>
+        <input
+          type="checkbox"
+          id="career"
+          value="career"
+          v-model="areas.val"
+          @blur="clearValidity('areas')"
+        />
+        <label for="career">Career Advisory</label>
       </div>
-      <p v-if="!areas.isValid">Please check one of areas</p>
+      <p v-if="!areas.isValid">At least one expertise must be selected.</p>
     </div>
-    <p v-if="!theFormIsValid">please fix the above errors and submit again</p>
+    <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
     <base-button>Register</base-button>
   </form>
 </template>
@@ -98,7 +99,7 @@ export default {
         val: [],
         isValid: true,
       },
-      theFormIsValid: true,
+      formIsValid: true,
     };
   },
   methods: {
@@ -106,32 +107,32 @@ export default {
       this[input].isValid = true;
     },
     validateForm() {
-      this.theFormIsValid = true;
+      this.formIsValid = true;
       if (this.firstName.val === '') {
         this.firstName.isValid = false;
-        this.theFormIsValid = false;
+        this.formIsValid = false;
       }
       if (this.lastName.val === '') {
         this.lastName.isValid = false;
-        this.theFormIsValid = false;
+        this.formIsValid = false;
       }
       if (this.description.val === '') {
         this.description.isValid = false;
-        this.theFormIsValid = false;
+        this.formIsValid = false;
       }
       if (!this.rate.val || this.rate.val < 0) {
         this.rate.isValid = false;
-        this.theFormIsValid = false;
+        this.formIsValid = false;
       }
       if (this.areas.val.length === 0) {
         this.areas.isValid = false;
-        this.theFormIsValid = false;
+        this.formIsValid = false;
       }
     },
     submitForm() {
       this.validateForm();
 
-      if (!this.theFormIsValid) {
+      if (!this.formIsValid) {
         return;
       }
 

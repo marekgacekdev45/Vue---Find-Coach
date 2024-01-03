@@ -1,17 +1,17 @@
 <template>
-    <span class="badge" :class="type">
-        {{ text }}
-    </span>
+  <span class="badge" :class="type">
+    {{ text }}
+  </span>
 </template>
 
 <script>
 export default {
-    props:['type','title'],
-    computed:{
-        text(){
-            return this.title.toUpperCase()
-        }
+  props: ['type', 'title'],
+  computed: {
+    text() {
+      return this.title.toUpperCase();
     }
+  }
 }
 </script>
 
@@ -38,4 +38,5 @@ export default {
 .career {
   background-color: #8d006e;
   color: white;
-}</style>
+}
+</style>

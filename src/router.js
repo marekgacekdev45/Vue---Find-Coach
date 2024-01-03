@@ -1,27 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import CoachDetail from './pages/coaches/CoachDetail';
-import CoachList from './pages/coaches/CoachList';
-import CoachRegister from './pages/coaches/CoachRegister';
-import ContactCoach from './pages/requests/ContactCoach';
-import RequestReceive from './pages/requests/RequestReceive';
-import NotFound from './pages/NotFound';
+import CoachDetail from './pages/coaches/CoachDetail.vue';
+import CoachesList from './pages/coaches/CoachesList.vue';
+import CoachRegistation from './pages/coaches/CoachRegistration.vue';
+import ContactCoach from './pages/requests/ContactCoach.vue';
+import RequestsReceived from './pages/requests/RequestsReceived.vue';
+import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', redirect: '/coaches' },
-    { path: '/coaches', component: CoachList },
+    { path: '/coaches', component: CoachesList },
     {
       path: '/coaches/:id',
       component: CoachDetail,
-      props:true,
-      children: [{ path: '/contact', component: ContactCoach }],
+      props: true,
+      children: [
+        { path: 'contact', component: ContactCoach } // /coaches/c1/contact
+      ]
     },
-    { path: '/register', component: CoachRegister },
-    { path: '/requests', component: RequestReceive },
-    { path: '/:notFound(.*)', component: NotFound }, // site for uncorrect uri
-  ],
+    { path: '/register', component: CoachRegistation },
+    { path: '/requests', component: RequestsReceived },
+    { path: '/:notFound(.*)', component: NotFound }
+  ]
 });
 
 export default router;

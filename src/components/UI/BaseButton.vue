@@ -2,7 +2,7 @@
   <button v-if="!link" :class="mode">
     <slot></slot>
   </button>
-  <router-link v-else :to="to" :class="mode" >
+  <router-link v-else :to="to" :class="mode">
     <slot></slot>
   </router-link>
 </template>
@@ -13,20 +13,20 @@ export default {
     mode: {
       type: String,
       required: false,
-      default: null,
+      default: null
     },
     link: {
       type: Boolean,
       required: false,
-      default: false,
+      default: false
     },
     to: {
       type: String,
       required: false,
-      default: '/',
-    },
-  },
-};
+      default: '/'
+    }
+  }
+}
 </script>
 
 <style scoped>

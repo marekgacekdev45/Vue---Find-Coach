@@ -6,7 +6,7 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline">Refresh</base-button>
-        <base-button v-if="!isCoach" link to="/register">Register as coach</base-button>
+        <base-button v-if="!isCoach" link to="/register">Register as Coach</base-button>
       </div>
       <ul v-if="hasCoaches">
         <coach-item
@@ -19,8 +19,7 @@
           :areas="coach.areas"
         ></coach-item>
       </ul>
-
-      <h3 v-else>No coaches found</h3>
+      <h3 v-else>No coaches found.</h3>
     </base-card>
   </section>
 </template>
@@ -30,7 +29,10 @@ import CoachItem from '../../components/coaches/CoachItem.vue';
 import CoachFilter from '../../components/coaches/CoachFilter.vue';
 
 export default {
-  components: { CoachItem, CoachFilter },
+  components: {
+    CoachItem,
+    CoachFilter,
+  },
   data() {
     return {
       activeFilters: {
@@ -41,8 +43,10 @@ export default {
     };
   },
   computed: {
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
+    },
     filteredCoaches() {
-      // return this.$store.getters['coaches/coaches'];
       const coaches = this.$store.getters['coaches/coaches'];
       return coaches.filter((coach) => {
         if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
@@ -60,11 +64,6 @@ export default {
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches'];
     },
-   
-    isCoach(){
-        return this.$store.getters['coaches/isCoach']
-    }
-  
   },
   methods: {
     setFilters(updatedFilters) {
