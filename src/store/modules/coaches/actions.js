@@ -36,7 +36,8 @@ export default {
     );
     const responseData = await response.json();
     if (!response.ok) {
-      //
+      const error = new Error(responseData.message || 'Failed to fetch!');
+      throw error
     }
 
     const coaches = [];
@@ -49,8 +50,8 @@ export default {
         hourlyRate: responseData[key].hourlyRate,
         areas: responseData[key].areas,
       };
-      coaches.push(coach)
+      coaches.push(coach);
     }
-    context.commit('setCoaches',coaches)
+    context.commit('setCoaches', coaches);
   },
 };
